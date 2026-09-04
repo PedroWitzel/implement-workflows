@@ -1,4 +1,4 @@
-name: TestWorkflow3
+name: TestWorkflow4
 on: [push, pull_request]
 
 jobs:
@@ -21,5 +21,9 @@ jobs:
       - uses: actions/download-artifact@v4
         with: 
           name: binaries
-          path: binaries/
-      - run: make test
+          path: build/
+
+      - name: Configure and Test
+        run: |
+          cmake -B build
+          ctest --test-dir build --output-on-failure
