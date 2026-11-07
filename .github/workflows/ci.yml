@@ -11,9 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Install build dependencies
-        run: sudo apt-get update && sudo apt-get install -y cmake build-essential
-
       - name: Configure
         run: cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
@@ -33,9 +30,6 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Install test dependencies
-        run: sudo apt-get update && sudo apt-get install -y cmake build-essential
-
       - name: Download build directory
         uses: actions/download-artifact@v8
         with:
@@ -52,9 +46,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-
-      - name: Install lint dependencies
-        run: sudo apt-get update && sudo apt-get install -y cmake clang-tidy
 
       - name: Configure (for compile_commands.json)
         run: cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
